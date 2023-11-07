@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="image">
+        <div class="overlay">
+          <img src="\images\bg-main-desktop.png" alt="Web Page Image" />
+          <img
+            src="\images\bg-card-front.png"
+            alt="Front Side"
+            class="card-front"
+          />
+          <img
+            src="\images\bg-card-back.png"
+            alt="Back Side"
+            class="card-back"
+          />
+        </div>
+      </div>
+
+      <div class="real-time-details">
+        <p id="real-time-card-number"></p>
+        <p id="real-time-cardholder-name"></p>
+        <p id="real-time-expiry-date"></p>
+        <p id="real-time-cvc"></p>
+      </div>
+
+      <div id="circle-image">
+        <img src="\images\favicon-32x32.png" alt="Front Side" />
+      </div>
+
+      <div class="form">
+        <form id="payment-form">
+          <h2>Payment Details</h2>
+
+          <div class="input-group">
+            <label for="cardholder-name">Cardholder Name:</label>
+            <input
+              type="text"
+              id="cardholder-name"
+              name="cardholder-name"
+              placeholder="John Doe"
+            />
+            <div id="cardholder-name-error" class="error-message"></div>
+          </div>
+
+          <div class="input-group">
+            <label for="card-number">Card Number:</label>
+            <input
+              type="text"
+              id="card-number"
+              name="card-number"
+              placeholder="1234 5678 9012 3456"
+            />
+            <div id="card-number-error" class="error-message"></div>
+          </div>
+
+          <div class="expiry-container">
+            <div class="input-group">
+              <label for="expiry-month">Expiry Month:</label>
+              <input
+                type="text"
+                id="expiry-month"
+                name="expiry-month"
+                placeholder="MM"
+              />
+              <div id="expiry-month-error" class="error-message"></div>
+            </div>
+
+            <div class="input-group">
+              <label for="expiry-year">Expiry Year:</label>
+              <input
+                type="text"
+                id="expiry-year"
+                name="expiry-year"
+                placeholder="YY"
+              />
+              <div id="expiry-year-error" class="error-message"></div>
+            </div>
+
+            <div class="input-group">
+              <label for="cvc">CVC:</label>
+              <input type="text" id="cvc" name="cvc" placeholder="123" />
+              <div id="cvc-error" class="error-message"></div>
+            </div>
+          </div>
+          <button type="submit" id="submit-button">Confirm</button>
+          <div id="error-message" class="error-message"></div>
+        </form>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
