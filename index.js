@@ -1,4 +1,6 @@
+// Wait for the HTML document to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Get references to form and input fields
   const form = document.getElementById("payment-form");
   const cardNumberInput = document.getElementById("card-number");
   const cardholderNameInput = document.getElementById("cardholder-name");
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cvcError = document.getElementById("cvc-error");
   const errorMessage = document.getElementById("error-message");
 
-  //  real-time details
+  // Real-time details update function
   function updateRealTimeDetails() {
     const cardNumberDetails = document.getElementById("real-time-card-number");
     const cardholderNameDetails = document.getElementById(
@@ -21,20 +23,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const expiryDateDetails = document.getElementById("real-time-expiry-date");
     const cvcDetails = document.getElementById("real-time-cvc");
 
+    // Update real-time details on the page
     cardNumberDetails.innerHTML = `<strong></strong> ${cardNumberInput.value}<br>`;
     cardholderNameDetails.innerHTML = `<strong></strong> ${cardholderNameInput.value}<br>`;
     expiryDateDetails.innerHTML = `<strong></strong> ${expiryMonthInput.value}/${expiryYearInput.value}<br>`;
     cvcDetails.innerHTML = `<strong></strong> ${cvcInput.value}`;
   }
-
+  // Add event listeners for real-time updates
   cardNumberInput.addEventListener("input", updateRealTimeDetails);
   cardholderNameInput.addEventListener("input", updateRealTimeDetails);
   expiryMonthInput.addEventListener("input", updateRealTimeDetails);
   expiryYearInput.addEventListener("input", updateRealTimeDetails);
   cvcInput.addEventListener("input", updateRealTimeDetails);
-
+  // Add event listener for form submission
   form.addEventListener("submit", function (e) {
+    // Prevent the default form submission behavior
     e.preventDefault();
+    // Clear previous error messages
     cardNumberError.innerText = "";
     cardholderNameError.innerText = "";
     expiryMonthError.innerText = "";
@@ -42,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cvcError.innerText = "";
     errorMessage.innerText = "";
 
+    // Validate and display error messages for each input field
     if (cardNumberInput.value === "") {
       cardNumberError.innerText = "Can't be blank";
     } else if (!/^\d{16}$/.test(cardNumberInput.value)) {
@@ -70,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cvcError.innerText = "Wrong format (123)";
     }
 
+    // Display a general error message if any field has an error
     if (
       cardNumberError.innerText !== "" ||
       cardholderNameError.innerText !== "" ||
