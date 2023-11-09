@@ -6,188 +6,342 @@ body {
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  padding: 0px;
-}
-
-.image {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 65%;
-}
-
-.overlay {
-  position: relative;
-}
-
-.overlay img {
-  max-width: 100%;
   height: auto;
+  width: auto;
 }
 
-.card-back {
-  position: absolute;
-  top: 500px;
-  left: 350px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 18px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
+/* Media query for mobile view */
+@media (max-width: 768px) {
+  .header-image img.mobile {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .header-image img.desktop {
+    display: none;
+  }
+
+  .card-front {
+    position: absolute;
+    top: 140px;
+    left: 30px;
+    width: 250px;
+    border-radius: 10px;
+  }
+
+  .card-back {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+    width: 250px;
+    border-radius: 5px;
+  }
 }
 
-.card-front {
-  position: absolute;
-  top: 300px;
-  left: 280px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 18px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
+/* Media query for desktop view */
+@media (min-width: 769px) {
+  .header-image img.desktop {
+    display: block;
+    height: auto;
+    width: auto;
+    position: absolute;
+  }
+  .header-image img.mobile {
+    display: none;
+  }
+
+  .card-front {
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    width: 300px;
+  }
+
+  .card-back {
+    position: absolute;
+    top: 350px;
+    left: 320px;
+    width: 300px;
+    border-radius: 5px;
+  }
 }
 
-.form {
-  width: 50%;
-  background-color: #ffffff;
-  padding: 30px;
-  border: 1px solid #ffffff;
-  font-family: "Space Grotesk", sans-serif;
-}
+/* Define styles for mobile view */
+@media (max-width: 768px) {
+  .form-container {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Space Grotesk", sans-serif;
+    flex-direction: column;
+  }
 
-.form h2 {
-  margin-bottom: 20px;
-}
+  .form {
+    width: auto;
+    margin-top: 60px;
+    margin-left: 30px;
+  }
+  .error-message {
+    color: red;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 
-.error-message {
-  color: red;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
+  .input-group {
+    position: relative;
+  }
 
-.input-group {
-  position: relative;
-}
+  .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 
-.input-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+  .input-group input[type="text"] {
+    width: 70%;
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
 
-.input-group input[type="text"] {
-  width: 40%;
-  padding: 13px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
+  .form button {
+    background-color: rgb(40, 12, 66);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 70%;
+    padding: 10px;
+    font-family: "Space Grotesk", sans-serif;
+  }
 
-.form button {
-  background-color: rgb(40, 12, 66);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  width: 43%;
-  padding: 10px;
-  font-family: "Space Grotesk", sans-serif;
-}
+  .expiry-month,
+  .cvc,
+  .expiry-year,
+  .cardholder-name {
+    flex: 1;
+    gap: 2px;
+  }
+  #expiry-year {
+    display: flex;
+    gap: 2px;
+    top: 400px;
+  }
 
-.expiry-container {
-  display: flex;
-  gap: 2px;
-}
+  #cvc {
+    display: flex;
+    gap: 2px;
+    top: 400px;
+  }
 
-.expiry-month,
-.cvc,
-.expiry-year,
-.cardholder-name {
-  flex: 1;
-  gap: 2px;
-}
-#expiry-year {
-  display: flex;
-  gap: 3px;
-  top: 200px;
-}
-.card-back {
-  background-color: #f1f1f1;
-  color: #ffffff;
-}
+  #cardholder-name {
+    display: flex;
+    gap: 2px;
+    top: 400px;
+  }
+  /*real time details*/
+  .card-back {
+    background-color: #f1f1f1;
+    color: #ffffff;
+  }
 
-.card-front {
-  color: #ffffff;
-}
-#real-time-card-number {
-  position: absolute;
-  top: 270px;
-  left: 235px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 12px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
-  color: #ffffff;
-}
-#real-time-cardholder-name {
-  position: absolute;
-  top: 300px;
-  left: 221px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 12px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
-  color: #ffffff;
-}
+  .card-front {
+    color: #ffffff;
+  }
+  #real-time-card-number {
+    position: absolute;
+    top: 180px;
+    left: 20px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
+  #real-time-cardholder-name {
+    position: absolute;
+    top: 220px;
+    left: 5px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
 
-#real-time-expiry-date {
-  position: absolute;
-  top: 300px;
-  left: 355px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 12px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
-  color: #ffffff;
-}
+  #real-time-expiry-date {
+    position: absolute;
+    top: 227px;
+    left: 110px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
 
-#real-time-cvc {
-  position: absolute;
-  top: 466px;
-  left: 430px;
-  width: 250px;
-  height: 50px;
-  text-align: center;
-  font-size: 18px;
-  font-family: "Space Grotesk", sans-serif;
-  white-space: pre-line;
-  color: #ffffff;
-  font-size: 12px;
+  #real-time-cvc {
+    position: absolute;
+    top: 96px;
+    left: 130px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+    font-size: 12px;
+  }
 }
+/* Define styles for desktop view  */
+@media (min-width: 769px) {
+  .form-container {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Space Grotesk", sans-serif;
+    flex-direction: column;
+    width: auto;
+    position: relative;
+  }
 
-#circle-image {
-  position: absolute;
-  top: 210px;
-  left: 225px;
-  width: 180px;
-  height: 20px;
-  text-align: center;
-  white-space: pre-line;
+  .form {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Space Grotesk", sans-serif;
+    width: auto;
+    margin-left: 800px;
+    position: relative;
+    margin-top: 160px;
+  }
+  .error-message {
+    color: red;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .input-group input[type="text"] {
+    width: 40%;
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .form button {
+    background-color: rgb(40, 12, 66);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 43%;
+    padding: 10px;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .expiry-container {
+    display: flex;
+    gap: 2px;
+  }
+
+  .expiry-month,
+  .cvc,
+  .expiry-year,
+  .cardholder-name {
+    flex: 1;
+    gap: 2px;
+  }
+  #expiry-year {
+    display: flex;
+    gap: 3px;
+    top: 200px;
+  }
+
+  .card-back {
+    background-color: #f1f1f1;
+    color: #ffffff;
+  }
+
+  .card-front {
+    color: #ffffff;
+  }
+  #real-time-card-number {
+    position: absolute;
+    top: 220px;
+    left: 230px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
+  #real-time-cardholder-name {
+    position: absolute;
+    top: 250px;
+    left: 221px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
+
+  #real-time-expiry-date {
+    position: absolute;
+    top: 250px;
+    left: 375px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+  }
+
+  #real-time-cvc {
+    position: absolute;
+    top: 410px;
+    left: 440px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Space Grotesk", sans-serif;
+    white-space: pre-line;
+    color: #ffffff;
+    font-size: 12px;
+  }
 }
