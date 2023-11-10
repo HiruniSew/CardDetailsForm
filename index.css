@@ -126,8 +126,8 @@ body {
 
   .expiry-container {
     display: flex;
-    gap: 20px;
-    width: 75%;
+    gap: 10px;
+    width: 85%;
     height: autos;
     margin-bottom: 25px;
     position: relative;
