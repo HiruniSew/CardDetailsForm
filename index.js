@@ -24,56 +24,88 @@ document.addEventListener("DOMContentLoaded", function () {
     const cvcDetails = document.getElementById("real-time-cvc");
 
     // Update real-time details on the page
-    cardNumberDetails.innerHTML = `<strong></strong> ${cardNumberInput.value}<br>`;
-    cardholderNameDetails.innerHTML = `<strong></strong> ${cardholderNameInput.value}<br>`;
+    cardNumberDetails.innerHTML = `<strong></strong> ${formatCardNumber(
+      cardNumberInput.value
+    )}<br>`;
+
+    // Validate cardholder name format
+    const cardholderName = cardholderNameInput.value;
+    if (/^\d+$/.test(cardholderName)) {
+      cardholderNameError.innerText =
+        "Incorrect format (should not contain numbers)";
+      cardholderNameInput.classList.add("error"); // Add error class
+    } else {
+      cardholderNameError.innerText = "";
+      cardholderNameInput.classList.remove("error"); // Remove error class
+    }
+
+    cardholderNameDetails.innerHTML = `<strong></strong> ${cardholderName}<br>`;
     expiryDateDetails.innerHTML = `<strong></strong> ${expiryMonthInput.value}/${expiryYearInput.value}<br>`;
     cvcDetails.innerHTML = `<strong></strong> ${cvcInput.value}`;
   }
+
+  // Add event listener for cardholder name input
+  cardholderNameInput.addEventListener("input", function () {
+    updateRealTimeDetails();
+  });
+
   // Add event listeners for real-time updates
-  cardNumberInput.addEventListener("input", updateRealTimeDetails);
-  cardholderNameInput.addEventListener("input", updateRealTimeDetails);
+  cardNumberInput.addEventListener("input", function () {
+    cardNumberInput.value = formatCardNumber(cardNumberInput.value);
+    updateRealTimeDetails();
+  });
+
   expiryMonthInput.addEventListener("input", updateRealTimeDetails);
   expiryYearInput.addEventListener("input", updateRealTimeDetails);
   cvcInput.addEventListener("input", updateRealTimeDetails);
+
   // Add event listener for form submission
   form.addEventListener("submit", function (e) {
     // Prevent the default form submission behavior
     e.preventDefault();
-    // Clear previous error messages
-    cardNumberError.innerText = "";
-    cardholderNameError.innerText = "";
-    expiryMonthError.innerText = "";
-    expiryYearError.innerText = "";
-    cvcError.innerText = "";
-    errorMessage.innerText = "";
+    // Clear previous error messages and reset field colors
+    resetFormValidation();
 
     // Validate and display error messages for each input field
     if (cardNumberInput.value === "") {
       cardNumberError.innerText = "Can't be blank";
+      cardNumberInput.classList.add("error");
     } else if (!/^\d{16}$/.test(cardNumberInput.value)) {
       cardNumberError.innerText = "Wrong format (16 digits)";
+      cardNumberInput.classList.add("error");
     }
 
     if (cardholderNameInput.value === "") {
       cardholderNameError.innerText = "Can't be blank";
+      cardholderNameInput.classList.add("error");
+    } else if (/^\d+$/.test(cardholderNameInput.value)) {
+      cardholderNameError.innerText =
+        "Incorrect format (should not contain numbers)";
+      cardholderNameInput.classList.add("error");
     }
 
     if (expiryMonthInput.value === "") {
       expiryMonthError.innerText = "Can't be blank";
+      expiryMonthInput.classList.add("error");
     } else if (!/^\d{2}$/.test(expiryMonthInput.value)) {
       expiryMonthError.innerText = "Wrong format (MM)";
+      expiryMonthInput.classList.add("error");
     }
 
     if (expiryYearInput.value === "") {
       expiryYearError.innerText = "Can't be blank";
+      expiryYearInput.classList.add("error");
     } else if (!/^\d{2}$/.test(expiryYearInput.value)) {
       expiryYearError.innerText = "Wrong format (YY)";
+      expiryYearInput.classList.add("error");
     }
 
     if (cvcInput.value === "") {
       cvcError.innerText = "Can't be blank";
+      cvcInput.classList.add("error");
     } else if (!/^\d{3}$/.test(cvcInput.value)) {
       cvcError.innerText = "Wrong format (123)";
+      cvcInput.classList.add("error");
     }
 
     // Display a general error message if any field has an error
@@ -87,4 +119,29 @@ document.addEventListener("DOMContentLoaded", function () {
       errorMessage.innerText = "Please correct the errors.";
     }
   });
+
+  // Function to format card number with spaces after every 4 digits
+  function formatCardNumber(input) {
+    return input.replace(/\D/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
+  }
+
+  // Function to reset form validation
+  function resetFormValidation() {
+    cardNumberError.innerText = "";
+    cardNumberInput.classList.remove("error");
+
+    cardholderNameError.innerText = "";
+    cardholderNameInput.classList.remove("error");
+
+    expiryMonthError.innerText = "";
+    expiryMonthInput.classList.remove("error");
+
+    expiryYearError.innerText = "";
+    expiryYearInput.classList.remove("error");
+
+    cvcError.innerText = "";
+    cvcInput.classList.remove("error");
+
+    errorMessage.innerText = "";
+  }
 });
